@@ -5,7 +5,7 @@ import CustomObject from './components/CustomObject';
 const App = () => {
     return (
         <>
-            <CustomObject />
+            {/* <CustomObject /> */}
             <Starter />
         </>
     );

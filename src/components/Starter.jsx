@@ -2,7 +2,11 @@ import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { DoubleSide } from 'three';
 // import OrbitCTRL from './OrbitCTRL';
-import { OrbitControls, TransformControls } from '@react-three/drei';
+import {
+    OrbitControls,
+    TransformControls,
+    PivotControls,
+} from '@react-three/drei';
 
 function Starter() {
     const BoxRef = useRef();
@@ -16,10 +20,19 @@ function Starter() {
             <directionalLight position={[1, 2, 3]} intensity={1.5} />
             <ambientLight intensity={0.5} />
             <group ref={GroupRef}>
-                <mesh position-x={-2}>
-                    <sphereGeometry />
-                    <meshStandardMaterial color='pink' />
-                </mesh>
+                <PivotControls
+                    anchor={[0, 0, 0]}
+                    depthTest={false}
+                    lineWidth={4}
+                    // axisColors={[]}
+                    scale={1}
+                    // fixed={}
+                >
+                    <mesh position-x={-2}>
+                        <sphereGeometry />
+                        <meshStandardMaterial color='pink' />
+                    </mesh>
+                </PivotControls>
                 {/* box */}
                 <mesh
                     position-x={2}

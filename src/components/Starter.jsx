@@ -6,10 +6,12 @@ import {
     OrbitControls,
     TransformControls,
     PivotControls,
+    Html,
 } from '@react-three/drei';
 
 function Starter() {
     const BoxRef = useRef();
+    const ballRef = useRef();
     const GroupRef = useRef();
     useFrame((state, delta) => {
         // GroupRef.current.rotation.y += delta;
@@ -26,11 +28,21 @@ function Starter() {
                     lineWidth={4}
                     // axisColors={[]}
                     scale={1}
+
                     // fixed={}
                 >
-                    <mesh position-x={-2}>
+                    <mesh position-x={-2} ref={ballRef}>
                         <sphereGeometry />
                         <meshStandardMaterial color='pink' />
+                        <Html
+                            position={[1, 1, 0]}
+                            wrapperClass='label'
+                            center
+                            distanceFactor={6}
+                            occlude={[ballRef, BoxRef]}
+                        >
+                            <div className='test'>that's a Sphere⚽</div>
+                        </Html>
                     </mesh>
                 </PivotControls>
                 {/* box */}

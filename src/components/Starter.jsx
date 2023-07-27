@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import { DoubleSide } from 'three';
-// import OrbitCTRL from './OrbitCTRL';
+import { useControls, button } from 'leva';
 import {
     OrbitControls,
     TransformControls,
@@ -9,10 +9,36 @@ import {
     Html,
     Text,
     Float,
-    MeshReflectorMaterial
+    MeshReflectorMaterial,
 } from '@react-three/drei';
 
-function Starter() {
+const Starter = () => {
+    const { position, color, visible, choise } = useControls('font', {
+        position: {
+            value: { x: 0, y: 0 },
+            min: -4,
+            max: 4,
+            step: 0.01,
+            joystick: 'invertY',
+        },
+        color: '#ff0000',
+        visible: true,
+        range: {
+            min: 0,
+            max: 10,
+            value: [4, 5],
+        },
+        log: button(() => {
+            console.log('ok');
+        }),
+        choise: {
+            options: [
+                'hello there',
+                'may the force be with you',
+                'the dark side of the force ',
+            ],
+        },
+    });
     const BoxRef = useRef();
     const ballRef = useRef();
     const GroupRef = useRef();
@@ -67,18 +93,20 @@ function Starter() {
             </mesh>
             <Float speed={5}>
                 <Text
+                    visible={visible}
                     // font=''
                     fontSize={1}
-                    color='salmon'
-                    position-z={3}
+                    color={color}
+                    position={[position.x, position.y, 3]}
                     maxWidth={3}
                     textAlign='left'
                 >
-                    {/* <meshNormalMaterial /> */}I LOVE R3F
+                    {/* <meshNormalMaterial /> */}
+                    {choise}
                 </Text>
             </Float>
         </>
     );
-}
+};
 
 export default Starter;

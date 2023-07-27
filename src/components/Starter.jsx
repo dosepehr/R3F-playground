@@ -7,6 +7,9 @@ import {
     TransformControls,
     PivotControls,
     Html,
+    Text,
+    Float,
+    MeshReflectorMaterial
 } from '@react-three/drei';
 
 function Starter() {
@@ -60,8 +63,20 @@ function Starter() {
             </group>
             <mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
                 <planeGeometry />
-                <meshStandardMaterial color='green' side={DoubleSide} />
+                <MeshReflectorMaterial color='green' side={DoubleSide} />
             </mesh>
+            <Float speed={5}>
+                <Text
+                    // font=''
+                    fontSize={1}
+                    color='salmon'
+                    position-z={3}
+                    maxWidth={3}
+                    textAlign='left'
+                >
+                    {/* <meshNormalMaterial /> */}I LOVE R3F
+                </Text>
+            </Float>
         </>
     );
 }

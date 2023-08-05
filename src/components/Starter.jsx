@@ -40,7 +40,6 @@ const Starter = () => {
         },
     });
     const directionalLight = useRef();
-    useHelper(directionalLight, DirectionalLightHelper, 1);
 
     const BoxRef = useRef();
     const ballRef = useRef();
@@ -50,22 +49,8 @@ const Starter = () => {
     });
     return (
         <>
-            <Environment
-                background
-                // files={[
-                //     '/environmentMaps/2/px.jpg',
-                //     '/environmentMaps/2/nx.jpg',
-                //     '/environmentMaps/2/py.jpg',
-                //     '/environmentMaps/2/ny.jpg',
-                //     '/environmentMaps/2/pz.jpg',
-                //     '/environmentMaps/2/nz.jpg',
-                // ]}
-                files={'/environmentMaps/the_sky_is_on_fire_2k.hdr'}
-            />
-            <SoftShadows />
-            <BakeShadows />
             <OrbitControls makeDefault />
-            {/* <directionalLight
+            <directionalLight
                 position={[1, 2, 3]}
                 intensity={1.5}
                 ref={directionalLight}
@@ -78,7 +63,7 @@ const Starter = () => {
                 shadow-camera-bottom={-5}
                 shadow-camera-left={-5}
             />
-            <ambientLight intensity={0.5} /> */}
+            <ambientLight intensity={0.5} />
             <group ref={GroupRef}>
                 <mesh position-x={-2} ref={ballRef} castShadow>
                     <sphereGeometry />

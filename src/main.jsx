@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { Canvas } from '@react-three/fiber';
-import { CineonToneMapping, SRGBColorSpace } from 'three';
-
+import { CineonToneMapping, SRGBColorSpace, Color } from 'three';
+const created = (state) => {
+    // state.gl.setClearColor('#ff0000');
+    // state.scene.background = new Color('blue');
+};
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Canvas
@@ -23,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 position: [3, 2, 6],
                 // zoom: 100,
             }}
+            // onCreated={created}
         >
+            {/* <color args={['green']} attach='background'/> */}
             <App />
         </Canvas>
     </React.StrictMode>

@@ -51,7 +51,7 @@ const Starter = () => {
             <directionalLight position={[1, 2, 3]} intensity={1.5} />
             <ambientLight intensity={0.5} />
             <group ref={GroupRef}>
-                <PivotControls
+                {/* <PivotControls
                     anchor={[0, 0, 0]}
                     depthTest={false}
                     lineWidth={4}
@@ -59,7 +59,7 @@ const Starter = () => {
                     scale={1}
 
                     // fixed={}
-                >
+                > */}
                     <mesh position-x={-2} ref={ballRef}>
                         <sphereGeometry />
                         <meshStandardMaterial color='pink' />
@@ -73,7 +73,7 @@ const Starter = () => {
                             <div className='test'>that's a Sphere⚽</div>
                         </Html>
                     </mesh>
-                </PivotControls>
+                {/* </PivotControls> */}
                 {/* box */}
                 <mesh
                     position-x={2}
@@ -84,14 +84,14 @@ const Starter = () => {
                     <meshStandardMaterial color='orange' />
                     <boxGeometry />
                 </mesh>
-                <TransformControls object={BoxRef} />
+                {/* <TransformControls object={BoxRef} /> */}
                 {/* box */}
             </group>
             <mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
                 <planeGeometry />
                 <MeshReflectorMaterial color='green' side={DoubleSide} />
             </mesh>
-            <Float speed={5}>
+            {/* <Float speed={5}>
                 <Text
                     visible={visible}
                     // font=''
@@ -101,10 +101,10 @@ const Starter = () => {
                     maxWidth={3}
                     textAlign='left'
                 >
-                    {/* <meshNormalMaterial /> */}
+                    <meshNormalMaterial />
                     {choise}
                 </Text>
-            </Float>
+            </Float> */}
         </>
     );
 };

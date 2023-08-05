@@ -11,6 +11,7 @@ const created = (state) => {
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Canvas
+            shadows
             // dpr={[1, 2]}
             // flat // no tone mapping
             // orthographic
@@ -28,7 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             }}
             // onCreated={created}
         >
-            {/* <color args={['green']} attach='background'/> */}
+            <color args={['ivory']} attach='background' />
             <App />
         </Canvas>
     </React.StrictMode>

@@ -1,15 +1,14 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-import { DoubleSide } from 'three';
+import { DoubleSide, DirectionalLightHelper } from 'three';
 import { useControls, button } from 'leva';
 import {
     OrbitControls,
-    TransformControls,
-    PivotControls,
     Html,
-    Text,
-    Float,
     MeshReflectorMaterial,
+    useHelper,
+    BakeShadows,
+    SoftShadows,
 } from '@react-three/drei';
 
 const Starter = () => {
@@ -39,6 +38,9 @@ const Starter = () => {
             ],
         },
     });
+    const directionalLight = useRef();
+    useHelper(directionalLight, DirectionalLightHelper, 1);
+
     const BoxRef = useRef();
     const ballRef = useRef();
     const GroupRef = useRef();
@@ -47,35 +49,40 @@ const Starter = () => {
     });
     return (
         <>
+            <SoftShadows />
+            <BakeShadows />
             <OrbitControls makeDefault />
-            <directionalLight position={[1, 2, 3]} intensity={1.5} />
+            <directionalLight
+                position={[1, 2, 3]}
+                intensity={1.5}
+                ref={directionalLight}
+                castShadow
+                shadow-mapSize={[1024, 1024]}
+                shadow-camera-near={1}
+                shadow-camera-far={10}
+                shadow-camera-top={5}
+                shadow-camera-right={5}
+                shadow-camera-bottom={-5}
+                shadow-camera-left={-5}
+            />
             <ambientLight intensity={0.5} />
             <group ref={GroupRef}>
-                {/* <PivotControls
-                    anchor={[0, 0, 0]}
-                    depthTest={false}
-                    lineWidth={4}
-                    // axisColors={[]}
-                    scale={1}
-
-                    // fixed={}
-                > */}
-                    <mesh position-x={-2} ref={ballRef}>
-                        <sphereGeometry />
-                        <meshStandardMaterial color='pink' />
-                        <Html
-                            position={[1, 1, 0]}
-                            wrapperClass='label'
-                            center
-                            distanceFactor={6}
-                            occlude={[ballRef, BoxRef]}
-                        >
-                            <div className='test'>that's a Sphere⚽</div>
-                        </Html>
-                    </mesh>
-                {/* </PivotControls> */}
+                <mesh position-x={-2} ref={ballRef} castShadow>
+                    <sphereGeometry />
+                    <meshStandardMaterial color='pink' />
+                    <Html
+                        position={[1, 1, 0]}
+                        wrapperClass='label'
+                        center
+                        distanceFactor={6}
+                        occlude={[ballRef, BoxRef]}
+                    >
+                        <div className='test'>that's a Sphere⚽</div>
+                    </Html>
+                </mesh>
                 {/* box */}
                 <mesh
+                    castShadow
                     position-x={2}
                     scale={1.5}
                     rotation-y={Math.PI * 0.25}
@@ -84,27 +91,17 @@ const Starter = () => {
                     <meshStandardMaterial color='orange' />
                     <boxGeometry />
                 </mesh>
-                {/* <TransformControls object={BoxRef} /> */}
                 {/* box */}
             </group>
-            <mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
+            <mesh
+                position-y={-1}
+                rotation-x={-Math.PI * 0.5}
+                scale={10}
+                receiveShadow
+            >
                 <planeGeometry />
-                <MeshReflectorMaterial color='green' side={DoubleSide} />
+                <meshStandardMaterial color='green' side={DoubleSide} />
             </mesh>
-            {/* <Float speed={5}>
-                <Text
-                    visible={visible}
-                    // font=''
-                    fontSize={1}
-                    color={color}
-                    position={[position.x, position.y, 3]}
-                    maxWidth={3}
-                    textAlign='left'
-                >
-                    <meshNormalMaterial />
-                    {choise}
-                </Text>
-            </Float> */}
         </>
     );
 };

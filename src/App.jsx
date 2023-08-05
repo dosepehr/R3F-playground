@@ -3,6 +3,8 @@ import Starter from './components/Starter';
 import CustomObject from './components/CustomObject';
 import Stats from './components/Stats';
 import Model from './components/Model';
+import Hamburger from './components/Hamburger';
+import Fox from './components/Fox';
 import PlaceHolder from './components/PlaceHolder';
 const App = () => {
     return (
@@ -13,11 +15,13 @@ const App = () => {
             <Suspense
                 fallback={
                     <>
-                        <PlaceHolder/>
+                        <PlaceHolder />
                     </>
                 }
             >
-                <Model />
+                {/* <Model /> */}
+                <Hamburger scale={0.35} position-x={0} />
+                <Fox />
             </Suspense>
         </>
     );

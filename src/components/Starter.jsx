@@ -9,6 +9,7 @@ import {
     useHelper,
     BakeShadows,
     SoftShadows,
+    Environment,
 } from '@react-three/drei';
 
 const Starter = () => {
@@ -49,10 +50,22 @@ const Starter = () => {
     });
     return (
         <>
+            <Environment
+                background
+                // files={[
+                //     '/environmentMaps/2/px.jpg',
+                //     '/environmentMaps/2/nx.jpg',
+                //     '/environmentMaps/2/py.jpg',
+                //     '/environmentMaps/2/ny.jpg',
+                //     '/environmentMaps/2/pz.jpg',
+                //     '/environmentMaps/2/nz.jpg',
+                // ]}
+                files={'/environmentMaps/the_sky_is_on_fire_2k.hdr'}
+            />
             <SoftShadows />
             <BakeShadows />
             <OrbitControls makeDefault />
-            <directionalLight
+            {/* <directionalLight
                 position={[1, 2, 3]}
                 intensity={1.5}
                 ref={directionalLight}
@@ -65,11 +78,11 @@ const Starter = () => {
                 shadow-camera-bottom={-5}
                 shadow-camera-left={-5}
             />
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={0.5} /> */}
             <group ref={GroupRef}>
                 <mesh position-x={-2} ref={ballRef} castShadow>
                     <sphereGeometry />
-                    <meshStandardMaterial color='pink' />
+                    <meshStandardMaterial color='pink' envMapIntensity={10} />
                     <Html
                         position={[1, 1, 0]}
                         wrapperClass='label'
@@ -88,7 +101,7 @@ const Starter = () => {
                     rotation-y={Math.PI * 0.25}
                     ref={BoxRef}
                 >
-                    <meshStandardMaterial color='orange' />
+                    <meshStandardMaterial color='orange' envMapIntensity={10} />
                     <boxGeometry />
                 </mesh>
                 {/* box */}
@@ -100,7 +113,11 @@ const Starter = () => {
                 receiveShadow
             >
                 <planeGeometry />
-                <meshStandardMaterial color='green' side={DoubleSide} />
+                <meshStandardMaterial
+                    color='green'
+                    side={DoubleSide}
+                    envMapIntensity={10}
+                />
             </mesh>
         </>
     );

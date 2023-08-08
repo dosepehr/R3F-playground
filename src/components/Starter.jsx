@@ -12,6 +12,9 @@ import {
     Environment,
 } from '@react-three/drei';
 
+const eventHandler = (box) => {
+    box.current.material.color.set(`hsl(${Math.random() * 360},100%,75%)`);
+};
 const Starter = () => {
     const { position, color, visible, choise } = useControls('font', {
         position: {
@@ -67,7 +70,11 @@ const Starter = () => {
             <group ref={GroupRef}>
                 <mesh position-x={-2} ref={ballRef} castShadow>
                     <sphereGeometry />
-                    <meshStandardMaterial color='pink' envMapIntensity={10} />
+                    <meshStandardMaterial
+                        color='pink'
+                        envMapIntensity={10}
+                        onClick={(event) => event.stopPropagation()}
+                    />
                     <Html
                         position={[1, 1, 0]}
                         wrapperClass='label'
@@ -80,6 +87,13 @@ const Starter = () => {
                 </mesh>
                 {/* box */}
                 <mesh
+                    onClick={() => eventHandler(BoxRef)}
+                    onPointerEnter={() =>
+                        (document.body.style.cursor = 'pointer')
+                    }
+                    onPointerLeave={() =>
+                        (document.body.style.cursor = 'default')
+                    }
                     castShadow
                     position-x={2}
                     scale={1.5}

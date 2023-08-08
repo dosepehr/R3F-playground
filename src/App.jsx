@@ -12,8 +12,8 @@ const App = () => {
         <>
             <Stats />
             {/* <CustomObject /> */}
-            {/* <Starter />
-            <Suspense
+            <Starter />
+            {/*<Suspense
                 fallback={
                     <>
                         <PlaceHolder />
@@ -24,7 +24,7 @@ const App = () => {
                 <Hamburger scale={0.35} position-x={0} />
                 <Fox />
             </Suspense> */}
-            <ThreeDText />
+            {/* <ThreeDText /> */}
         </>
     );
 };

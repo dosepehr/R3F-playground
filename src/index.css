@@ -9,6 +9,10 @@ body,
   overflow-x: hidden;
 }
 
+canvas {
+  touch-action: none;
+}
+
 
 .label .test {
   user-select: none;
@@ -17,4 +21,13 @@ body,
   padding: 15px;
   border-radius: 10px;
   white-space: nowrap;
+}
+
+
+.htmlScreen iframe {
+  width: 1024px;
+  height: 670px;
+  border: none;
+  border-radius: 20px;
+  background: white;
 }

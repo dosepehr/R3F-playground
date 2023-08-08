@@ -7,12 +7,13 @@ import Hamburger from './components/Hamburger';
 import Fox from './components/Fox';
 import PlaceHolder from './components/PlaceHolder';
 import ThreeDText from './components/ThreeDText';
+import Laptop from './components/Laptop';
 const App = () => {
     return (
         <>
             <Stats />
             {/* <CustomObject /> */}
-            <Starter />
+            {/* <Starter /> */}
             {/* <Suspense
                 fallback={
                     <>
@@ -25,6 +26,7 @@ const App = () => {
                 <Fox />
             </Suspense> */}
             {/* <ThreeDText /> */}
+            <Laptop />
         </>
     );
 };

@@ -13,7 +13,7 @@ const App = () => {
             <Stats />
             {/* <CustomObject /> */}
             <Starter />
-            {/*<Suspense
+            {/* <Suspense
                 fallback={
                     <>
                         <PlaceHolder />

@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { DoubleSide, DirectionalLightHelper } from 'three';
 import { useControls, button } from 'leva';
 import {
@@ -11,7 +11,15 @@ import {
     SoftShadows,
     Environment,
 } from '@react-three/drei';
-
+import {
+    Bloom,
+    DepthOfField,
+    EffectComposer,
+    Noise,
+    Vignette,
+    Sepia,
+} from '@react-three/postprocessing';
+import { BlendFunction } from 'postprocessing';
 const eventHandler = (box) => {
     box.current.material.color.set(`hsl(${Math.random() * 360},100%,75%)`);
 };
@@ -52,23 +60,24 @@ const Starter = () => {
     });
     return (
         <>
+            {/* <EffectComposer>
+                <DepthOfField
+                    focusDistance={0.025} // where to focus
+                    focalLength={0.025} // focal length
+                    bokehScale={6} // bokeh size
+                />
+                <Vignette eskil={false} offset={0.1} darkness={1.1} />
+            </EffectComposer> */}
+
             <OrbitControls makeDefault />
             <directionalLight
                 position={[1, 2, 3]}
                 intensity={1.5}
                 ref={directionalLight}
-                castShadow
-                shadow-mapSize={[1024, 1024]}
-                shadow-camera-near={1}
-                shadow-camera-far={10}
-                shadow-camera-top={5}
-                shadow-camera-right={5}
-                shadow-camera-bottom={-5}
-                shadow-camera-left={-5}
             />
             <ambientLight intensity={0.5} />
             <group ref={GroupRef}>
-                <mesh position-x={-2} ref={ballRef} castShadow>
+                <mesh position-x={-2} ref={ballRef}>
                     <sphereGeometry />
                     <meshStandardMaterial
                         color='pink'
@@ -94,7 +103,6 @@ const Starter = () => {
                     onPointerLeave={() =>
                         (document.body.style.cursor = 'default')
                     }
-                    castShadow
                     position-x={2}
                     scale={1.5}
                     rotation-y={Math.PI * 0.25}
@@ -109,7 +117,6 @@ const Starter = () => {
                 position-y={-1}
                 rotation-x={-Math.PI * 0.5}
                 scale={10}
-                receiveShadow
             >
                 <planeGeometry />
                 <meshStandardMaterial

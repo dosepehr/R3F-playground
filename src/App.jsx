@@ -8,12 +8,14 @@ import Fox from './components/Fox';
 import PlaceHolder from './components/PlaceHolder';
 import ThreeDText from './components/ThreeDText';
 import Laptop from './components/Laptop';
+import PhysicsComponent from './components/PhysicsComponent';
 const App = () => {
     return (
         <>
             <Stats />
             {/* <CustomObject /> */}
             {/* <Starter /> */}
+            <PhysicsComponent />
             {/* <Suspense
                 fallback={
                     <>
@@ -26,7 +28,7 @@ const App = () => {
                 <Fox />
             </Suspense> */}
             {/* <ThreeDText /> */}
-            <Laptop />
+            {/* <Laptop /> */}
         </>
     );
 };
